@@ -11,3 +11,15 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.impute import SimpleImputer
+
+from google.colab import files
+uploaded = files.upload()
+
+df = pd.read_csv(list(uploaded.keys())[0])
+df.head()
+
+print("Forma del dataset:", df.shape)
+print("\nTipos de datos:")
+print(df.dtypes)
+print("\nValores nulos por columnas:")
+print(df.isnull().sum())
