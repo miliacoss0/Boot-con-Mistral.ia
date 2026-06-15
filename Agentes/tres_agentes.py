@@ -52,3 +52,9 @@ df_limpio = pd.read_csv('dataset_limpio.csv')
 print("Dataset limpio cargado:")
 print(df_limpio.shape)
 df_limpio.head()
+
+X = df_limpio.drop(columns=['placement_status'])
+y = df_limpio['placement_status']
+
+print("Features (X):", X.shape)
+print("Objetivo (Y):", y.shape)
