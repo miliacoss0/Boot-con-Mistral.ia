@@ -36,3 +36,11 @@ df['placement_status'] = le.fit_transform(df['placement_status'])
 
 print("Valores únicos después de codificar:")
 print(df['placement_status'].value_counts())
+
+features = [col for col in num_cols if col != 'placement_status']
+
+scaler = StandardScaler()
+df[features] = scaler.fit_transform(df[features])
+
+print("Dataset escalado:")
+print(df.head())
