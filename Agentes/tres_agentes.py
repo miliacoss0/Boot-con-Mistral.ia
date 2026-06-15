@@ -130,3 +130,16 @@ podra encontrar trabajo según su rendimiento académico.
 """
 
 print(reporte_natural)
+
+#aca voy a ver si mi agente sufre de overffitin, pq las predicciones son casi del
+#100%
+# Accuracy en entrenamiento
+y_pred_train = modelo.predict(X_train)
+accuracy_train = accuracy_score(y_train, y_pred_train)
+
+# Accuracy en prueba
+accuracy_test = accuracy_score(y_test, y_pred)
+
+print(f"Accuracy entrenamiento: {accuracy_train * 100:.2f}%")
+print(f"Accuracy prueba:        {accuracy_test * 100:.2f}%")
+print(f"Diferencia:             {abs(accuracy_train - accuracy_test) * 100:.2f}%")
