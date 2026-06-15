@@ -47,3 +47,8 @@ print(df.head())
 
 df.to_csv('dataset_limpio.csv', index=False)
 print("Dataset normalizado guardado como dataset_limpio.csv")
+
+df_limpio = pd.read_csv('dataset_limpio.csv')
+print("Dataset limpio cargado:")
+print(df_limpio.shape)
+df_limpio.head()
