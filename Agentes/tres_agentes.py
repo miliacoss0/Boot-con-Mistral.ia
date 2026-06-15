@@ -104,3 +104,29 @@ reporte = classification_report(y_test, y_pred)
 
 print("Modelo y métricas cargados!")
 print("Accuracy:", accuracy)
+
+total = len(y_test)
+correctas = int(accuracy * total)
+placed = int(y_test.sum())
+not_placed = total - placed
+
+reporte_natural = f"""
+Reporte de rendimiento del estudiante
+Dataset analizado: {len(df_limpio)} estudiantes
+Modelo utilizado: Regresión Logística
+
+Resultados:
+--> Precisión del modelo: {accuracy * 100:.2f}%
+--> Predicciones correctas: {correctas} de {total}
+
+Distribución: aqui se define si los alumnos podran encontrar trabajo despues
+de graduarse.
+--> Estudiantes colocados (Placed): {placed}
+--> Estudiantes no colocados (Not Placed): {not_placed}
+
+Conclusión:
+El modelo predice con alta precisión si un estudiante
+podra encontrar trabajo según su rendimiento académico.
+"""
+
+print(reporte_natural)
