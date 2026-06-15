@@ -82,5 +82,25 @@ print(classification_report(y_test, y_pred))
 
 import joblib
 
-joblib.dump(modelo, 'modelo_entrenado.pk1')
-print("Modelo guardado como modelo_entrenado.pk1")
+joblib.dump(modelo, 'modelo_entrenado.pkl')
+print("Modelo guardado como modelo_entrenado.pkl")
+
+import joblib
+from sklearn.metrics import accuracy_score, classification_report
+import pandas as pd
+
+modelo = joblib.load('modelo_entrenado.pkl')
+df_limpio = pd.read_csv('dataset_limpio.csv')
+
+X = df_limpio.drop(columns=['placement_status'])
+y = df_limpio['placement_status']
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+y_pred = modelo.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+reporte = classification_report(y_test, y_pred)
+
+print("Modelo y métricas cargados!")
+print("Accuracy:", accuracy)
