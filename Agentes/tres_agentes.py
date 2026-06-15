@@ -44,3 +44,6 @@ df[features] = scaler.fit_transform(df[features])
 
 print("Dataset escalado:")
 print(df.head())
+
+df.to_csv('dataset_limpio.csv', index=False)
+print("Dataset normalizado guardado como dataset_limpio.csv")
