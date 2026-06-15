@@ -179,3 +179,27 @@ plt.tight_layout()
 plt.savefig('curva_roc.png')
 plt.show()
 print("Imagen guardada como curva_roc.png")
+
+#aqui quise crear un modelo que prediga mas o menos las horas de sueño que tienen
+#si duermen o bien o no
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+#Separar features y objetivo
+X2 = df_limpio.drop(columns=['sleep_hours', 'placement_status'])
+y2 = df_limpio['sleep_hours']
+
+#Dividir en entrenamiento y prueba
+X2_train, X2_test, y2_train, y2_test = train_test_split(X2, y2, test_size=0.2, random_state=42)
+
+#Entrenar modelo
+modelo2 = LinearRegression()
+modelo2.fit(X2_train, y2_train)
+
+#Evaluar el modelo
+y2_pred = modelo2.predict(X2_test)
+mse = mean_squared_error(y2_test, y2_pred)
+r2 = r2_score(y2_test, y2_pred)
+
+print(f"MSE:  {mse:.4f}")
+print(f"R2:   {r2:.4f}")
