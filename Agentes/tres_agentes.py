@@ -143,3 +143,21 @@ accuracy_test = accuracy_score(y_test, y_pred)
 print(f"Accuracy entrenamiento: {accuracy_train * 100:.2f}%")
 print(f"Accuracy prueba:        {accuracy_test * 100:.2f}%")
 print(f"Diferencia:             {abs(accuracy_train - accuracy_test) * 100:.2f}%")
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import confusion_matrix
+
+cm = confusion_matrix(y_test, y_pred)
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+            xticklabels=['Not Placed', 'Placed'],
+            yticklabels=['Not Placed', 'Placed'])
+plt.title('Matriz de Confusión')
+plt.ylabel('Valor Real')
+plt.xlabel('Valor Predicho')
+plt.tight_layout()
+plt.savefig('matriz_confusion.png')
+plt.show()
+print("Imagen guardada como matriz_confusion.png")
