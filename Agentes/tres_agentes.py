@@ -30,3 +30,9 @@ df[num_cols] = imputer.fit_transform(df[num_cols])
 
 print("Valores nulos luego de imputar:")
 print(df.isnull().sum())
+
+le = LabelEncoder()
+df['placement_status'] = le.fit_transform(df['placement_status'])
+
+print("Valores únicos después de codificar:")
+print(df['placement_status'].value_counts())
