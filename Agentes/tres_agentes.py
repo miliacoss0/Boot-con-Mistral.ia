@@ -218,3 +218,51 @@ plt.tight_layout()
 plt.savefig('real_vs_predicho.png')
 plt.show()
 print("Imagen guardada como real_vs_predicho.png")
+
+# Datos del modelo 1
+total = len(y_test)
+correctas = int(accuracy * total)
+placed = int(y_test.sum())
+not_placed = total - placed
+
+# Datos del modelo 2
+r2_porcentaje = r2 * 100
+
+reporte_final = f"""
+Reporte final — Rendimiento Estudiantil
+
+Datos del dataset:
+- Total de estudiantes analizados: {len(df_limpio)}
+- Variables analizadas: estudio, asistencia, sueño, internet, tareas, notas
+
+Modelo 1 — ¿Consiguen los estudiantes trabajo?
+Modelo: Regresión Logística
+- Precisión: {accuracy * 100:.2f}%
+- Predicciones correctas: {correctas} de {total}
+- Estudiantes que SÍ consiguieron trabajo: {placed} ({placed/total*100:.1f}%)
+- Estudiantes que NO consiguieron trabajo: {not_placed} ({not_placed/total*100:.1f}%)
+
+Conclusión:
+El modelo predice con {accuracy * 100:.2f}% de precisión si un estudiante
+conseguirá trabajo. Las variables más influyentes son
+el puntaje del examen y el puntaje previo.
+
+Modelo 2 — ¿Dormir afecta el rendimiento?
+Modelo: Regresión Lineal
+- R2 (poder explicativo): {r2_porcentaje:.2f}%
+- Error promedio (MSE): {mse:.4f}
+
+Conclusión:
+Las horas de sueño tienen una relación MUY BAJA ({r2_porcentaje:.2f}%)
+con el rendimiento académico según este dataset.
+Dormir más o menos NO parece afectar significativamente
+si un estudiante consigue trabajo o saca buenas notas.
+Esto sugiere que otros factores no capturados en el
+dataset (estrés, hábitos, trabajo part-time) influyen más.
+
+Resumen general:
+- Lo que sí predice el éxito laboral: notas y puntajes académicos
+- Lo que no lo predice: las horas de sueño
+"""
+
+print(reporte_final)
