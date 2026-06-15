@@ -71,3 +71,11 @@ modelo = LogisticRegression(random_state=42)
 modelo.fit(X_train, y_train)
 
 print("Modelo entrenado")
+
+from sklearn.metrics import accuracy_score, classification_report
+
+y_pred = modelo.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("\nReporte completo:")
+print(classification_report(y_test, y_pred))
