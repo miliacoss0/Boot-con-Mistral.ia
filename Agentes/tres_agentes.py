@@ -23,3 +23,10 @@ print("\nTipos de datos:")
 print(df.dtypes)
 print("\nValores nulos por columnas:")
 print(df.isnull().sum())
+
+num_cols = df.select_dtypes(include=['float64', 'int64']).columns.tolist()
+imputer = SimpleImputer(strategy='mean')
+df[num_cols] = imputer.fit_transform(df[num_cols])
+
+print("Valores nulos luego de imputar:")
+print(df.isnull().sum())
