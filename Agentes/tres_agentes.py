@@ -203,3 +203,18 @@ r2 = r2_score(y2_test, y2_pred)
 
 print(f"MSE:  {mse:.4f}")
 print(f"R2:   {r2:.4f}")
+
+#valor real vs lo que predijo el modelo
+plt.figure(figsize=(8, 6))
+plt.scatter(y2_test, y2_pred, alpha=0.3, color='blue')
+plt.plot([y2_test.min(), y2_test.max()], 
+         [y2_test.min(), y2_test.max()], 
+         color='red', lw=2, linestyle='--', label='Predicción perfecta')
+plt.xlabel('Valores Reales (sleep_hours)')
+plt.ylabel('Valores Predichos')
+plt.title('Real vs Predicho — sleep_hours')
+plt.legend()
+plt.tight_layout()
+plt.savefig('real_vs_predicho.png')
+plt.show()
+print("Imagen guardada como real_vs_predicho.png")
