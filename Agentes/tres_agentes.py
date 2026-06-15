@@ -79,3 +79,8 @@ y_pred = modelo.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("\nReporte completo:")
 print(classification_report(y_test, y_pred))
+
+import joblib
+
+joblib.dump(modelo, 'modelo_entrenado.pk1')
+print("Modelo guardado como modelo_entrenado.pk1")
