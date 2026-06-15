@@ -58,3 +58,9 @@ y = df_limpio['placement_status']
 
 print("Features (X):", X.shape)
 print("Objetivo (Y):", y.shape)
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+print("Entrenamiento:", X_train.shape)
+print("Prueba:", X_test.shape)
