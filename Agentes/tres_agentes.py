@@ -161,3 +161,21 @@ plt.tight_layout()
 plt.savefig('matriz_confusion.png')
 plt.show()
 print("Imagen guardada como matriz_confusion.png")
+
+from sklearn.metrics import roc_curve, auc
+
+y_prob = modelo.predict_proba(X_test)[:, 1]
+fpr, tpr, thresholds = roc_curve(y_test, y_prob)
+roc_auc = auc(fpr, tpr)
+
+plt.figure(figsize=(8, 6))
+plt.plot(fpr, tpr, color='blue', lw=2, label=f'ROC curve (AUC = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], color='red', lw=2, linestyle='--', label='Modelo aleatorio')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Curva ROC')
+plt.legend(loc='lower right')
+plt.tight_layout()
+plt.savefig('curva_roc.png')
+plt.show()
+print("Imagen guardada como curva_roc.png")
