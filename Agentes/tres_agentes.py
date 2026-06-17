@@ -266,3 +266,9 @@ Resumen general:
 """
 
 print(reporte_final)
+
+from google.colab import files
+
+files.download('matriz_confusion.png')
+files.download('curva_roc.png')
+files.download('real_vs_predicho.png')
